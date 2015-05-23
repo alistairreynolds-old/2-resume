@@ -14,7 +14,7 @@ var bio = {
 			"location": "Stroud, UK"
 		},
 	"photo": "img/al.jpg",
-	"welcome": "Check out my resume",
+	"welcome": "The Cake is not a Lie",
 	"skills": ["HTML","CSS","JS","PHP","MySQL","Adobe Fireworks"]
 };
 
@@ -24,14 +24,14 @@ var work = {
 	"jobs": []
 };
 work.jobs.push(addJob(
-	"Junior developer",
+	"Junior Developer",
 	"Zone EU",
 	"2007-2008",
 	"Leicester, UK",
 	"Working in a small company programming in Delphi to create small applications for the company. Also included managing some small projects, customer support, and documentation.")
 );
 work.jobs.push(addJob(
-	"Web developer",
+	"Web Developer",
 	"P&C Micros",
 	"2009-2011",
 	"Melbourne, Australia",
