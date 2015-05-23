@@ -73,48 +73,51 @@ projects.projects.push(addProject(
 	"http://www.banksiafems.com/wp-content/uploads/2014/10/homepage_launcher-1024x738.png")
 );
 projects.display = function(){
-	console.log(this.projects);
 	var HTMLfullProjects = "";
 	for(project in this.projects){
-		HTMLfullProjects += HTMLprojectStart;
+		$('#projects').append(HTMLprojectStart);
 		HTMLfullProjects += HTMLprojectTitle.replace('%data%',this.projects[project].title);
 		HTMLfullProjects += HTMLprojectDates.replace('%data%',this.projects[project].dates);
 		HTMLfullProjects += HTMLprojectDescription.replace('%data%',this.projects[project].description);
 		HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image);
 	}
-	//console.log(HTMLfullProjects);
 	$('#projects').append(HTMLfullProjects);
 };
 
-
+// Create education object
 var education = {
-	"schools": [
-		{
-			"Name": "Guthlaxton College",
-			"location": "Leicester",
-			"Years": "2002-2004",
-			"Level": "A-Level",
-			"Subjects": ["Physics","Computer Science","Geography"]
-		},
-		{
-			"Name": "DeMontfort Uni",
-			"location": "Leicester",
-			"Years": "2005-2009",
-			"Level": "BSC",
-			"Subjects": ["Computer Science"]
-		},
-	],
-	"online-courses": [
-		{
-			"Name": "Front-end Web Developer",
-			"location": "Udacity",
-			"Years": "2015",
-			"Level": "Nandodegree",
-			"Subjects": ["HTML","CSS","JS","JQuery"]
-		}
-	]
-}
+	"schools": [],
+	"online": []
+};
+education.schools.push(addSchool(
+	"Guthlaxton College",
+	"Leicester, UK",
+	"2002-2004",
+	"A-Level",
+	["Physics","Computer Science","Geography"])
+);
+education.schools.push(addSchool(
+	"DeMontfort University",
+	"Leicester, UK",
+	"2005-2009",
+	"BSc",
+	["Computer Science"])
+);
+education.online.push(addOnline(
+	"Front-end Web Developer",
+	"Udacity",
+	"2015",
+	"http://www.udacity.com")
+);
 
+/* ------------------
+ * Initialise empty HTML variables
+ *--------------------*/
+
+var HTMLfullSkills = "";
+var HTMLfullJobs = "";
+var HTMLfullEducation = "";
+var HTMLfullOnlineCourses = "";
 
 /* ------------------
  * Formatting variables into HTML
@@ -129,27 +132,41 @@ HTMLlocation = HTMLlocation.replace('%data%', bio.contacts.location);
 HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
 HTMLbioPic = HTMLbioPic.replace('%data%', bio.photo);
 
-HTMLschoolName = HTMLschoolName.replace('%data%', education.name);
-HTMLschoolDegree = HTMLschoolDegree.replace('%data%', education.degree);
-HTMLschoolDates = HTMLschoolDates.replace('%data%', education.dates);
-HTMLschoolLocation = HTMLschoolLocation.replace('%data%', education.location);
-HTMLschoolMajor = HTMLschoolMajor.replace('%data%', education.major);
 
 if(bio.skills){
-	var HTMLfullSkills = "";
 	for(skill in bio.skills){
 		HTMLfullSkills = HTMLfullSkills + HTMLskills.replace('%data%', bio.skills[skill]);
 	}
 }
 
 if(work.jobs){
-	var HTMLfullJobs = "";
 	for(job in work.jobs){
+		$('#workExperience').append(HTMLworkStart);
 		HTMLfullJobs += (HTMLworkEmployer).replace('%data%', work.jobs[job].employer);
 		HTMLfullJobs += (HTMLworkTitle).replace('%data%', work.jobs[job].title);
 		HTMLfullJobs += (HTMLworkDates).replace('%data%', work.jobs[job].dates);
 		HTMLfullJobs += (HTMLworkLocation).replace('%data%', work.jobs[job].location);
 		HTMLfullJobs += (HTMLworkDescription).replace('%data%', work.jobs[job].description);
+	}
+}
+
+if(education.schools){
+	for(school in education.schools){
+		$('#education').append(HTMLschoolStart);
+		HTMLfullEducation += (HTMLschoolName).replace('%data%', education.schools[school].name);
+		HTMLfullEducation += (HTMLschoolDegree).replace('%data%', education.schools[school].degree);
+		HTMLfullEducation += (HTMLschoolDates).replace('%data%', education.schools[school].dates);
+		HTMLfullEducation += (HTMLschoolLocation).replace('%data%', education.schools[school].location);
+		HTMLfullEducation += (HTMLschoolMajor).replace('%data%', education.schools[school].major);
+	}
+}
+
+if(education.online){
+	for(course in education.online){
+		HTMLfullOnlineCourses += (HTMLonlineTitle).replace('%data%', education.online[course].title);
+		HTMLfullOnlineCourses += (HTMLonlineSchool).replace('%data%', education.online[course].school);
+		HTMLfullOnlineCourses += (HTMLonlineDates).replace('%data%', education.online[course].dates);
+		HTMLfullOnlineCourses += (HTMLonlineURL).replace('%data%', education.online[course].url);
 	}
 }
 
@@ -167,21 +184,22 @@ $('#header').prepend(HTMLheaderName);
 $('#header').append(HTMLwelcomeMsg);
 $('#header').append(HTMLbioPic);
 if(bio.skills){
-	$('#header').append(HTMLskillsStart);;
+	$('#header').append(HTMLskillsStart);
 	$('#skills').append(HTMLfullSkills);
 }
 
 if(work.jobs){
-	$('#header').append(HTMLworkStart);;
 	$('#workExperience').append(HTMLfullJobs);
 }
 
-$('#header').append(HTMLschoolStart);;
-$('#education').append(HTMLschoolName);
-$('#education').append(HTMLschoolDegree);
-$('#education').append(HTMLschoolDates);
-$('#education').append(HTMLschoolLocation);
-$('#education').append(HTMLschoolMajor);
+if(education.schools){
+	$('#education').append(HTMLfullEducation);
+}
+
+if(education.online){
+	$('#education').append(HTMLonlineClasses);
+	$('#education').append(HTMLfullOnlineCourses);
+}
 
 projects.display();
 
