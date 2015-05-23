@@ -6,7 +6,7 @@
 var bio = {
 	"name": "Alistair Reynolds",
 	"role": "Project Manager",
-	"contact":
+	"contacts":
 		{
 			"phone": "+447882311503",
 			"email": "alistair.reynolds1986@gmail.com",
@@ -18,59 +18,87 @@ var bio = {
 	"skills": ["HTML","CSS","JS","PHP","MySQL","Adobe Fireworks"]
 };
 
-// Education as object
-var education = {
-	"name": "DeMontfort Uni",
-	"location": "Leicester, UK",
-	"dates": "2005-2009",
-	"degree": "BSC",
-	"major": "Computer Science"
-}
 
 // Create work object with jobs as empty array
 var work = {
 	"jobs": []
 };
-// Create job object
-var job = {};
-// Set job properties
-job.title = "Junior developer";
-job.employer = "Zone EU";
-job.dates = "2007-2008";
-job.location = "Leicester, UK";
-job.description = "Working in a small company programming in Delphi to create small applications for the company";
-// Add job to jobs in work object
-work.jobs.push(job);
-// Next job setting up and adding
-var job = {};
-job.title = "Web developer";
-job.employer = "Zone EU";
-job.dates = "2009-2011";
-job.location = "Leicester, UK";
-job.description = "Designing and setting up basic websites with all skills listed";
-work.jobs.push(job);
-// Next job setting up and adding
-var job = {};
-job.title = "Project Manager";
-job.employer = "P&C Micros";
-job.dates = "2011-Current";
-job.location = "Nantong, China and Melbourne, Australia";
-job.description = "Expanding upon basic ideas of a project, designing how they will work, and managing the project to bring them to life";
-work.jobs.push(job);
+work.jobs.push(addJob(
+	"Junior developer",
+	"Zone EU",
+	"2007-2008",
+	"Leicester, UK",
+	"Working in a small company programming in Delphi to create small applications for the company. Also included managing some small projects, customer support, and documentation.")
+);
+work.jobs.push(addJob(
+	"Web developer",
+	"P&C Micros",
+	"2009-2011",
+	"Melbourne, Australia",
+	"Designing and setting up basic websites with HTML, CSS, JavaScript, JQuery and JQueryUI, PHP, and MySQL. Also included some customer support work, managing larger projects, basic Web Server administration via WHM/CPanel and SSH, and some minor Android and Delphi development."));
+work.jobs.push(addJob(
+	"Project Manager",
+	"Zone China",
+	"2011-Curent",
+	"Nantong, China",
+	"I would be handed a project from the directory that he would like making. From basic details of what was wanted, I would expand upon the basic ideas of the project, designing how they will work and look. I would then hand the work over to developers, and organise how and when we would make releases.")
+);
 
-/*
+// Create projects object with project as empty array
+var projects = {
+	"projects": []
+};
+projects.projects.push(addProject(
+	"Planet ZEON",
+	"2008-2010",
+	"An online membership system for laser tag players to track their statistics",
+	"http://madcabdesign.co.uk/Images/sites/zeon-thumb.png")
+);
+projects.projects.push(addProject(
+	"Megazone Leicester",
+	"2010",
+	"A minor website for a laser tag site",
+	"http://madcabdesign.co.uk/Images/sites/mz-leicester-thumb.png")
+);
+projects.projects.push(addProject(
+	"Myzonelaser",
+	"2012-Current",
+	"Planet ZEON version 2, with achievements and ranks",
+	"http://myzonelaser.com/assets/slideshow/1-MZL.png")
+);
+projects.projects.push(addProject(
+	"Banksia FEMS",
+	"2012-Current",
+	"Banksia FEMS is a Family Entertainment Centre Management System, used to manage bookings Point of Sale, Staff management, Inventory, etc",
+	"http://www.banksiafems.com/wp-content/uploads/2014/10/homepage_launcher-1024x738.png")
+);
+projects.display = function(){
+	console.log(this.projects);
+	var HTMLfullProjects = "";
+	for(project in this.projects){
+		HTMLfullProjects += HTMLprojectStart;
+		HTMLfullProjects += HTMLprojectTitle.replace('%data%',this.projects[project].title);
+		HTMLfullProjects += HTMLprojectDates.replace('%data%',this.projects[project].dates);
+		HTMLfullProjects += HTMLprojectDescription.replace('%data%',this.projects[project].description);
+		HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image);
+	}
+	//console.log(HTMLfullProjects);
+	$('#projects').append(HTMLfullProjects);
+};
+
+
 var education = {
 	"schools": [
 		{
 			"Name": "Guthlaxton College",
-			"City": "Leicester",
+			"location": "Leicester",
 			"Years": "2002-2004",
 			"Level": "A-Level",
 			"Subjects": ["Physics","Computer Science","Geography"]
 		},
 		{
 			"Name": "DeMontfort Uni",
-			"City": "Leicester",
+			"location": "Leicester",
 			"Years": "2005-2009",
 			"Level": "BSC",
 			"Subjects": ["Computer Science"]
@@ -79,58 +107,14 @@ var education = {
 	"online-courses": [
 		{
 			"Name": "Front-end Web Developer",
-			"Provider": "Udacity",
+			"location": "Udacity",
 			"Years": "2015",
 			"Level": "Nandodegree",
 			"Subjects": ["HTML","CSS","JS","JQuery"]
 		}
 	]
 }
-// Setup jobs array in a different way
-var career = {
-	"jobs": []
-};
-var job = {};
-job.job = "Junior developer";
-job.employer = "Zone EU";
-job.years = "2007-2008";
 
-*/
-
-
-
-
-
-//career["jobs"].append(job);
-
-var projects = {
-	"websites":[
-		{
-			"name":"Planet ZEON",
-			"years":"2010-2012",
-			"type":"Entertainment"
-		},
-		{
-			"name":"My Zone Laser",
-			"years":"2012-Current",
-			"type":"Entertainment"
-		}
-	]
-}
-
-/* ------------------
- * Checking vars
- *--------------------*/
-//console.log(bio);
-//console.log(education);
-//console.log(career);
-
-projects.display = function(){
-	console.log(this.Websites);
-	for(var p in this.Websites){
-		console.log(p.Name);
-	}
-}
 
 /* ------------------
  * Formatting variables into HTML
@@ -138,10 +122,10 @@ projects.display = function(){
 
 HTMLheaderName = HTMLheaderName.replace('%data%',  bio.name);
 HTMLheaderRole = HTMLheaderRole.replace('%data%', bio.role);
-HTMLmobile = HTMLmobile.replace('%data%', bio.contact.phone);
-HTMLemail = HTMLemail.replace('%data%', bio.contact.email);
-HTMLgithub = HTMLgithub.replace('%data%', bio.contact.github);
-HTMLlocation = HTMLlocation.replace('%data%', bio.contact.location);
+HTMLmobile = HTMLmobile.replace('%data%', bio.contacts.phone);
+HTMLemail = HTMLemail.replace('%data%', bio.contacts.email);
+HTMLgithub = HTMLgithub.replace('%data%', bio.contacts.github);
+HTMLlocation = HTMLlocation.replace('%data%', bio.contacts.location);
 HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
 HTMLbioPic = HTMLbioPic.replace('%data%', bio.photo);
 
@@ -198,3 +182,8 @@ $('#education').append(HTMLschoolDegree);
 $('#education').append(HTMLschoolDates);
 $('#education').append(HTMLschoolLocation);
 $('#education').append(HTMLschoolMajor);
+
+projects.display();
+
+$('#main').append(internationalizeButton);
+$('#mapDiv').append(googleMap);
