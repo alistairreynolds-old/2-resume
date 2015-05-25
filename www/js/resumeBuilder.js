@@ -14,7 +14,7 @@ var bio = {
 			"location": "Stroud, UK"
 		},
 	"photo": "img/al.jpg",
-	"welcome": "The Cake is not a Lie",
+//	"welcome": "The Cake is not a Lie",
 	"skills": ["HTML","CSS","JS","PHP","MySQL","Adobe Fireworks"]
 };
 
@@ -126,7 +126,7 @@ HTMLmobile = HTMLmobile.replace('%data%', bio.contacts.phone);
 HTMLemail = HTMLemail.replace('%data%', bio.contacts.email);
 HTMLgithub = HTMLgithub.replace('%data%', bio.contacts.github);
 HTMLlocation = HTMLlocation.replace('%data%', bio.contacts.location);
-HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
+//HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
 HTMLbioPic = HTMLbioPic.replace('%data%', bio.photo);
 
 
@@ -187,7 +187,7 @@ $('#topContacts').append(HTMLlocation);
 
 $('#primary-header').prepend(HTMLheaderRole);
 $('#primary-header').prepend(HTMLheaderName);
-$('#secondary-header').append(HTMLwelcomeMsg);
+//$('#secondary-header').append(HTMLwelcomeMsg);
 $('#secondary-header').append(HTMLbioPic);
 if(bio.skills){
 	$('#secondary-header').append(HTMLskillsStart);
