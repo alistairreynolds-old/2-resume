@@ -52,25 +52,25 @@ projects.projects.push(addProject(
 	"Planet ZEON",
 	"2008-2010",
 	"An online membership system for laser tag players to track their statistics",
-	"http://madcabdesign.co.uk/Images/sites/zeon-thumb.png")
+	"img/project-images/zeon-thumb.png")
 );
 projects.projects.push(addProject(
 	"Megazone Leicester",
 	"2010",
 	"A minor website for a laser tag site",
-	"http://madcabdesign.co.uk/Images/sites/mz-leicester-thumb.png")
+	"img/project-images/mz-leicester-thumb.png")
 );
 projects.projects.push(addProject(
 	"Myzonelaser",
 	"2012-Current",
 	"Planet ZEON version 2, with achievements and ranks",
-	"http://myzonelaser.com/assets/slideshow/1-MZL.png")
+	"img/project-images/1-MZL.png")
 );
 projects.projects.push(addProject(
 	"Banksia FEMS",
 	"2012-Current",
 	"Banksia FEMS is a Family Entertainment Centre Management System, used to manage bookings Point of Sale, Staff management, Inventory, etc",
-	"http://www.banksiafems.com/wp-content/uploads/2014/10/homepage_launcher-1024x738.png")
+	"img/project-images/homepage_launcher-1024x738.png")
 );
 projects.display = function(){
 	for(project in this.projects){
@@ -185,12 +185,12 @@ $('#topContacts').append(HTMLemail);
 $('#topContacts').append(HTMLgithub);
 $('#topContacts').append(HTMLlocation);
 
-$('#header').prepend(HTMLheaderRole);
-$('#header').prepend(HTMLheaderName);
-$('#header').append(HTMLwelcomeMsg);
-$('#header').append(HTMLbioPic);
+$('#primary-header').prepend(HTMLheaderRole);
+$('#primary-header').prepend(HTMLheaderName);
+$('#secondary-header').append(HTMLwelcomeMsg);
+$('#secondary-header').append(HTMLbioPic);
 if(bio.skills){
-	$('#header').append(HTMLskillsStart);
+	$('#secondary-header').append(HTMLskillsStart);
 	$('#skills').append(HTMLfullSkills);
 }
 projects.display();
