@@ -73,15 +73,15 @@ projects.projects.push(addProject(
 	"http://www.banksiafems.com/wp-content/uploads/2014/10/homepage_launcher-1024x738.png")
 );
 projects.display = function(){
-	var HTMLfullProjects = "";
 	for(project in this.projects){
+		var HTMLfullProjects = "";
 		$('#projects').append(HTMLprojectStart);
 		HTMLfullProjects += HTMLprojectTitle.replace('%data%',this.projects[project].title);
 		HTMLfullProjects += HTMLprojectDates.replace('%data%',this.projects[project].dates);
 		HTMLfullProjects += HTMLprojectDescription.replace('%data%',this.projects[project].description);
 		HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image);
+		$('.project-entry:last-of-type').append(HTMLfullProjects);
 	}
-	$('#projects').append(HTMLfullProjects);
 };
 
 // Create education object
@@ -115,9 +115,6 @@ education.online.push(addOnline(
  *--------------------*/
 
 var HTMLfullSkills = "";
-var HTMLfullJobs = "";
-var HTMLfullEducation = "";
-var HTMLfullOnlineCourses = "";
 
 /* ------------------
  * Formatting variables into HTML
@@ -141,32 +138,41 @@ if(bio.skills){
 
 if(work.jobs){
 	for(job in work.jobs){
+		var HTMLfullJobs = "";
 		$('#workExperience').append(HTMLworkStart);
 		HTMLfullJobs += (HTMLworkEmployer).replace('%data%', work.jobs[job].employer);
 		HTMLfullJobs += (HTMLworkTitle).replace('%data%', work.jobs[job].title);
 		HTMLfullJobs += (HTMLworkDates).replace('%data%', work.jobs[job].dates);
 		HTMLfullJobs += (HTMLworkLocation).replace('%data%', work.jobs[job].location);
 		HTMLfullJobs += (HTMLworkDescription).replace('%data%', work.jobs[job].description);
+		$('.work-entry:last-of-type').append(HTMLfullJobs);
 	}
 }
 
 if(education.schools){
+	$('#education').append(HTMLschools);
 	for(school in education.schools){
+		var HTMLfullEducation = "";
 		$('#education').append(HTMLschoolStart);
 		HTMLfullEducation += (HTMLschoolName).replace('%data%', education.schools[school].name);
 		HTMLfullEducation += (HTMLschoolDegree).replace('%data%', education.schools[school].degree);
 		HTMLfullEducation += (HTMLschoolDates).replace('%data%', education.schools[school].dates);
 		HTMLfullEducation += (HTMLschoolLocation).replace('%data%', education.schools[school].location);
 		HTMLfullEducation += (HTMLschoolMajor).replace('%data%', education.schools[school].major);
+		$('.education-entry:last-of-type').append(HTMLfullEducation);
 	}
 }
 
 if(education.online){
+	$('#education').append(HTMLonlineClasses);
 	for(course in education.online){
+		var HTMLfullOnlineCourses = "";
+		$('#education').append(HTMLschoolStart);
 		HTMLfullOnlineCourses += (HTMLonlineTitle).replace('%data%', education.online[course].title);
 		HTMLfullOnlineCourses += (HTMLonlineSchool).replace('%data%', education.online[course].school);
 		HTMLfullOnlineCourses += (HTMLonlineDates).replace('%data%', education.online[course].dates);
 		HTMLfullOnlineCourses += (HTMLonlineURL).replace('%data%', education.online[course].url);
+		$('.education-entry:last-of-type').append(HTMLfullOnlineCourses);
 	}
 }
 
@@ -187,21 +193,6 @@ if(bio.skills){
 	$('#header').append(HTMLskillsStart);
 	$('#skills').append(HTMLfullSkills);
 }
-
-if(work.jobs){
-	$('#workExperience').append(HTMLfullJobs);
-}
-
-if(education.schools){
-	$('#education').append(HTMLfullEducation);
-}
-
-if(education.online){
-	$('#education').append(HTMLonlineClasses);
-	$('#education').append(HTMLfullOnlineCourses);
-}
-
 projects.display();
-
 $('#main').append(internationalizeButton);
 $('#mapDiv').append(googleMap);
