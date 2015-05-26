@@ -123,8 +123,8 @@ var HTMLfullSkills = "";
 HTMLheaderName = HTMLheaderName.replace('%data%',  bio.name);
 HTMLheaderRole = HTMLheaderRole.replace('%data%', bio.role);
 HTMLmobile = HTMLmobile.replace('%data%', bio.contacts.phone);
-HTMLemail = HTMLemail.replace('%data%', bio.contacts.email);
-HTMLgithub = HTMLgithub.replace('%data%', bio.contacts.github);
+HTMLemail = replaceAll('%data%',bio.contacts.email,HTMLemail);
+HTMLgithub = replaceAll('%data%',bio.contacts.github,HTMLgithub);
 HTMLlocation = HTMLlocation.replace('%data%', bio.contacts.location);
 //HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
 HTMLbioPic = HTMLbioPic.replace('%data%', bio.photo);
@@ -171,7 +171,7 @@ if(education.online){
 		HTMLfullOnlineCourses += (HTMLonlineTitle).replace('%data%', education.online[course].title);
 		HTMLfullOnlineCourses += (HTMLonlineSchool).replace('%data%', education.online[course].school);
 		HTMLfullOnlineCourses += (HTMLonlineDates).replace('%data%', education.online[course].dates);
-		HTMLfullOnlineCourses += (HTMLonlineURL).replace('%data%', education.online[course].url);
+		HTMLfullOnlineCourses += replaceAll('%data%',education.online[course].url,HTMLonlineURL);
 		$('.education-entry:last-of-type').append(HTMLfullOnlineCourses);
 	}
 }

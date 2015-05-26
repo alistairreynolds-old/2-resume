@@ -31,7 +31,7 @@ var HTMLonlineClasses = '<h3>Online Classes</h3>';
 var HTMLonlineTitle = '<a href="#">%data%';
 var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
+var HTMLonlineURL = '<br><a href="%data%" target="_blank">%data%</a>';
 
 function addOnline(title,school,dates,url){
 	var online = {};
@@ -40,4 +40,9 @@ function addOnline(title,school,dates,url){
 	online.dates = dates;
 	online.url = url;
 	return online;
+}
+
+// From http://stackoverflow.com/questions/1144783/replacing-all-occurrences-of-a-string-in-javascript
+function replaceAll(find, replace, str) {
+  return str.replace(new RegExp(find, 'g'), replace);
 }
