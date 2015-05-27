@@ -194,5 +194,6 @@ if(bio.skills){
 	$('#skills').append(HTMLfullSkills);
 }
 projects.display();
-$('#main').append(internationalizeButton);
+// Commenting out to show that it's there, but hiding because it looks nasty
+//$('#main').append(internationalizeButton);
 $('#mapDiv').append(googleMap);
