@@ -11,10 +11,11 @@ var bio = {
 			"phone": "+447882311503",
 			"email": "alistair.reynolds1986@gmail.com",
 			"github": "madcabbage",
-			"location": "Stroud, UK"
+			"location": "Stroud, UK",
+			"twitter": "@madcabbage"
 		},
 	"photo": "img/al.jpg",
-//	"welcome": "The Cake is not a Lie",
+	"welcome": "The Cake is not a Lie",
 	"skills": ["HTML","CSS","JS","PHP","MySQL","Adobe Fireworks"]
 };
 
