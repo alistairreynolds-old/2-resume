@@ -16,8 +16,12 @@
 }
 
 .project-entry.flex-box{
-  padding-left:0px;
-  padding-right:0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.align-right{
+  text-align: right;
 }
 
 h1 {
@@ -47,7 +51,7 @@ h3 {
   font-style: italic;
   font-size: 20px;
   color: #000000;
-  line-height: 22px;  
+  line-height: 22px;
 }
 
 h4 {
@@ -119,12 +123,12 @@ a {
   color: #FFFFFF;
 }
 
-#topContacts a{  
+#topContacts a{
   margin-top: 0px;
   display: inline;
 }
 
-.white-text a{ 
+.white-text a{
   color: #fff;
   text-decoration: underline;
   margin-top: 0px;

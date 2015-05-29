@@ -53,25 +53,25 @@ projects.projects.push(addProject(
 	"Planet ZEON",
 	"2008-2010",
 	"An online membership system for laser tag players to track their statistics",
-	"img/project-images/zeon-thumb.png")
+	["img/project-images/zeon-thumb.png"])
 );
 projects.projects.push(addProject(
 	"Megazone Leicester",
 	"2010",
 	"A minor website for a laser tag site",
-	"img/project-images/mz-leicester-thumb.png")
+	["img/project-images/mz-leicester-thumb.png"])
 );
 projects.projects.push(addProject(
 	"Myzonelaser",
 	"2012-Current",
 	"Planet ZEON version 2, with achievements and ranks",
-	"img/project-images/1-MZL.png")
+	["img/project-images/1-MZL.png","img/project-images/mzl-2.png"])
 );
 projects.projects.push(addProject(
 	"Banksia FEMS",
 	"2012-Current",
 	"Banksia FEMS is a Family Entertainment Centre Management System, used to manage bookings Point of Sale, Staff management, Inventory, etc",
-	"img/project-images/homepage_launcher-1024x738.png")
+	["img/project-images/homepage_launcher-1024x738.png","img/project-images/banksia-2.png"])
 );
 projects.display = function(){
 	for(project in this.projects){
@@ -80,7 +80,12 @@ projects.display = function(){
 		HTMLfullProjects += HTMLprojectTitle.replace('%data%',this.projects[project].title);
 		HTMLfullProjects += HTMLprojectDates.replace('%data%',this.projects[project].dates);
 		HTMLfullProjects += HTMLprojectDescription.replace('%data%',this.projects[project].description);
-		HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image);
+		HTMLfullProjects += HTMLprojectImageStart;
+		//HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image);
+		for(image in this.projects[project].image){
+			HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image[image]);
+		}
+		HTMLfullProjects += HTMLprojectImageEnd;
 		$('.project-entry:last-of-type').append(HTMLfullProjects);
 	}
 };
@@ -127,7 +132,7 @@ HTMLmobile = HTMLmobile.replace('%data%', bio.contacts.phone);
 HTMLemail = replaceAll('%data%',bio.contacts.email,HTMLemail);
 HTMLgithub = replaceAll('%data%',bio.contacts.github,HTMLgithub);
 HTMLlocation = HTMLlocation.replace('%data%', bio.contacts.location);
-//HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
+HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
 HTMLbioPic = HTMLbioPic.replace('%data%', bio.photo);
 
 

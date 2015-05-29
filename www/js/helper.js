@@ -24,7 +24,7 @@ var HTMLblog = '<li class="flex-item"><span class="blue-text">blog</span><span >
 var HTMLlocation = '<li class="flex-item"><span class="blue-text">location</span><span >%data%</span></li>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic">';
-//var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
+var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
 
 var HTMLskillsStart = '<h3 id="skillsH3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>';
 var HTMLskills = '<li class="flex-item"><span >%data%</span></li>';
@@ -39,8 +39,10 @@ var HTMLworkDescription = '<p><br>%data%</p>';
 var HTMLprojectStart = '<div class="project-entry flex-box space-between"></div>';
 var HTMLprojectTitle = '<div class="flex-item"><a href="#" class="flex-item">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
-var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '</div><div class="flex-item"><img width="400px" class="flex-item" src="%data%"></div>';
+var HTMLprojectDescription = '<p><br>%data%</p></div>';
+var HTMLprojectImageStart = '<div class="flex-item align-right">';
+var HTMLprojectImage = '<img width="400px" class="flex-item" src="%data%">';
+var HTMLprojectImageEnd = '</div>';
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschools = '<h3>Schools</h3>';
