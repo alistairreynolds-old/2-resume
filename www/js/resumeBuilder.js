@@ -1,9 +1,9 @@
-/* ------------------
- * Setup variables
- *--------------------*/
-
-// Bio as object
+/***********
+* Bio object
+************/
+// Create object
 var bio = {
+// Set variables
 	"name": "Alistair Reynolds",
 	"role": "Project Manager",
 	"contacts":
@@ -18,9 +18,37 @@ var bio = {
 	"welcome": "The Cake is not a Lie",
 	"skills": ["HTML","CSS","JS","PHP","MySQL","Adobe Fireworks"]
 };
+// Create dsplay function
+bio.display = function(){
+	// Format variables
+	HTMLheaderName = HTMLheaderName.replace('%data%',  this.name);
+	HTMLheaderRole = HTMLheaderRole.replace('%data%', this.role);
+	HTMLmobile = HTMLmobile.replace('%data%', this.contacts.phone);
+	HTMLemail = replaceAll('%data%',this.contacts.email,HTMLemail);
+	HTMLgithub = replaceAll('%data%',this.contacts.github,HTMLgithub);
+	HTMLlocation = HTMLlocation.replace('%data%', this.contacts.location);
+	HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', this.welcome);
+	HTMLbioPic = HTMLbioPic.replace('%data%', this.photo);
+	var HTMLfullSkills = "";
+	for(skill in this.skills){
+		HTMLfullSkills = HTMLfullSkills + HTMLskills.replace('%data%', this.skills[skill]);
+	}
+	// Append to HTML
+	$('#topContacts').append(HTMLmobile);
+	$('#topContacts').append(HTMLemail);
+	$('#topContacts').append(HTMLgithub);
+	$('#topContacts').append(HTMLlocation);
+	$('#primary-header').prepend(HTMLheaderRole);
+	$('#primary-header').prepend(HTMLheaderName);
+	$('#secondary-header').append(HTMLwelcomeMsg);
+	$('#secondary-header').append(HTMLbioPic);
+	$('#secondary-header').append(HTMLskillsStart);
+	$('#skills').append(HTMLfullSkills);
+}
 
-
-// Create work object with jobs as empty array
+/***********
+* Work object
+************/
 var work = {
 	"jobs": []
 };
@@ -44,8 +72,22 @@ work.jobs.push(addJob(
 	"Nantong, China",
 	"I would be handed a project from the directory that he would like making. From basic details of what was wanted, I would expand upon the basic ideas of the project, designing how they will work and look. I would then hand the work over to developers, and organise how and when we would make releases.")
 );
+work.display = function(){
+	$('#workExperience').append(HTMLworkStart);
+	for(job in this.jobs){
+		var HTMLfullJobs = "";
+		HTMLfullJobs += (HTMLworkEmployer).replace('%data%', this.jobs[job].employer);
+		HTMLfullJobs += (HTMLworkTitle).replace('%data%', this.jobs[job].title);
+		HTMLfullJobs += (HTMLworkDates).replace('%data%', this.jobs[job].dates);
+		HTMLfullJobs += (HTMLworkLocation).replace('%data%', this.jobs[job].location);
+		HTMLfullJobs += (HTMLworkDescription).replace('%data%', this.jobs[job].description);
+		$('.work-entry:last-of-type').append(HTMLfullJobs);
+	}
+}
 
-// Create projects object with project as empty array
+/***********
+* Projects object
+************/
 var projects = {
 	"projects": []
 };
@@ -81,7 +123,6 @@ projects.display = function(){
 		HTMLfullProjects += HTMLprojectDates.replace('%data%',this.projects[project].dates);
 		HTMLfullProjects += HTMLprojectDescription.replace('%data%',this.projects[project].description);
 		HTMLfullProjects += HTMLprojectImageStart;
-		//HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image);
 		for(image in this.projects[project].image){
 			HTMLfullProjects += HTMLprojectImage.replace('%data%',this.projects[project].image[image]);
 		}
@@ -90,7 +131,9 @@ projects.display = function(){
 	}
 };
 
-// Create education object
+/***********
+* Education object
+************/
 var education = {
 	"schools": [],
 	"online": []
@@ -115,49 +158,9 @@ education.online.push(addOnline(
 	"2015",
 	"http://www.udacity.com")
 );
-
-/* ------------------
- * Initialise empty HTML variables
- *--------------------*/
-
-var HTMLfullSkills = "";
-
-/* ------------------
- * Formatting variables into HTML
- *--------------------*/
-
-HTMLheaderName = HTMLheaderName.replace('%data%',  bio.name);
-HTMLheaderRole = HTMLheaderRole.replace('%data%', bio.role);
-HTMLmobile = HTMLmobile.replace('%data%', bio.contacts.phone);
-HTMLemail = replaceAll('%data%',bio.contacts.email,HTMLemail);
-HTMLgithub = replaceAll('%data%',bio.contacts.github,HTMLgithub);
-HTMLlocation = HTMLlocation.replace('%data%', bio.contacts.location);
-HTMLwelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcome);
-HTMLbioPic = HTMLbioPic.replace('%data%', bio.photo);
-
-
-if(bio.skills){
-	for(skill in bio.skills){
-		HTMLfullSkills = HTMLfullSkills + HTMLskills.replace('%data%', bio.skills[skill]);
-	}
-}
-
-if(work.jobs){
-	for(job in work.jobs){
-		var HTMLfullJobs = "";
-		$('#workExperience').append(HTMLworkStart);
-		HTMLfullJobs += (HTMLworkEmployer).replace('%data%', work.jobs[job].employer);
-		HTMLfullJobs += (HTMLworkTitle).replace('%data%', work.jobs[job].title);
-		HTMLfullJobs += (HTMLworkDates).replace('%data%', work.jobs[job].dates);
-		HTMLfullJobs += (HTMLworkLocation).replace('%data%', work.jobs[job].location);
-		HTMLfullJobs += (HTMLworkDescription).replace('%data%', work.jobs[job].description);
-		$('.work-entry:last-of-type').append(HTMLfullJobs);
-	}
-}
-
-if(education.schools){
+education.display = function(){
 	$('#education').append(HTMLschools);
-	for(school in education.schools){
+	for(school in this.schools){
 		var HTMLfullEducation = "";
 		$('#education').append(HTMLschoolStart);
 		HTMLfullEducation += (HTMLschoolName).replace('%data%', education.schools[school].name);
@@ -167,11 +170,8 @@ if(education.schools){
 		HTMLfullEducation += (HTMLschoolMajor).replace('%data%', education.schools[school].major);
 		$('.education-entry:last-of-type').append(HTMLfullEducation);
 	}
-}
-
-if(education.online){
 	$('#education').append(HTMLonlineClasses);
-	for(course in education.online){
+	for(course in this.online){
 		var HTMLfullOnlineCourses = "";
 		$('#education').append(HTMLschoolStart);
 		HTMLfullOnlineCourses += (HTMLonlineTitle).replace('%data%', education.online[course].title);
@@ -180,25 +180,12 @@ if(education.online){
 		HTMLfullOnlineCourses += replaceAll('%data%',education.online[course].url,HTMLonlineURL);
 		$('.education-entry:last-of-type').append(HTMLfullOnlineCourses);
 	}
-}
 
-/* ------------------
- * Appending formatted HTML into page
- *--------------------*/
+};
 
-$('#topContacts').append(HTMLmobile);
-$('#topContacts').append(HTMLemail);
-$('#topContacts').append(HTMLgithub);
-$('#topContacts').append(HTMLlocation);
-
-$('#primary-header').prepend(HTMLheaderRole);
-$('#primary-header').prepend(HTMLheaderName);
-//$('#secondary-header').append(HTMLwelcomeMsg);
-$('#secondary-header').append(HTMLbioPic);
-if(bio.skills){
-	$('#secondary-header').append(HTMLskillsStart);
-	$('#skills').append(HTMLfullSkills);
-}
+bio.display();
+education.display();
+work.display();
 projects.display();
 // Commenting out to show that it's there, but hiding because it looks nasty
 //$('#main').append(internationalizeButton);
